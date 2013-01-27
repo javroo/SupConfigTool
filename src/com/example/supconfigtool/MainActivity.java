@@ -18,7 +18,7 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,8 +47,8 @@ public class MainActivity extends Activity {
 
     // Layout Views
     private ListView mConversationView;
-    private EditText mOutEditText;
-    private Button mSendButton;
+    private NumberPicker mNumberPickerP, mNumberPickerI, mNumberPickerD;
+    private Button mUpdateButton;
 
     // Name of the connected device
     private String mConnectedDeviceName = null;
@@ -119,17 +119,23 @@ public class MainActivity extends Activity {
         mConversationView = (ListView) findViewById(R.id.in);
         mConversationView.setAdapter(mConversationArrayAdapter);
 
-        // Initialize the compose field with a listener for the return key
-        mOutEditText = (EditText) findViewById(R.id.edit_text_out);
-        mOutEditText.setOnEditorActionListener(mWriteListener);
+        mNumberPickerP = (NumberPicker) findViewById(R.id.p_param_picker);
+        mNumberPickerP.setMaxValue(100);
+        mNumberPickerP.setMinValue(0);
 
+        mNumberPickerI = (NumberPicker) findViewById(R.id.i_param_picker);
+        mNumberPickerI.setMaxValue(100);
+        mNumberPickerI.setMinValue(0);
+
+        mNumberPickerD = (NumberPicker) findViewById(R.id.d_param_picker);
+        mNumberPickerD.setMaxValue(100);
+        mNumberPickerD.setMinValue(0);
+        
         // Initialize the send button with a listener that for click events
-        mSendButton = (Button) findViewById(R.id.button_send);
-        mSendButton.setOnClickListener(new OnClickListener() {
+        mUpdateButton = (Button) findViewById(R.id.button_update_params);
+        mUpdateButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                // Send a message using content of the edit text widget
-                TextView view = (TextView) findViewById(R.id.edit_text_out);
-                String message = view.getText().toString();
+            	String message = Integer.toString(mNumberPickerP.getValue()) + " " + Integer.toString(mNumberPickerI.getValue()) + " " + Integer.toString(mNumberPickerD.getValue());
                 sendMessage(message);
             }
         });
@@ -190,7 +196,6 @@ public class MainActivity extends Activity {
 
             // Reset out string buffer to zero and clear the edit text field
             mOutStringBuffer.setLength(0);
-            mOutEditText.setText(mOutStringBuffer);
         }
     }
 

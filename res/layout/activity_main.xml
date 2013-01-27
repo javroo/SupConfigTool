@@ -15,16 +15,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
-        <EditText android:id="@+id/edit_text_out"
+        <NumberPicker android:id="@+id/p_param_picker"
+		    android:layout_width="wrap_content"
+   			android:layout_height="wrap_content"
+		    android:width="100dip"
+		/>
+        <NumberPicker android:id="@+id/i_param_picker"
+		    android:layout_width="wrap_content"
+   			android:layout_height="wrap_content"
+		    android:width="100dip"
+		/>            
+        <NumberPicker android:id="@+id/d_param_picker"
+		    android:layout_width="wrap_content"
+   			android:layout_height="wrap_content"
+		    android:width="100dip"
+		/>            
+        <Button android:id="@+id/button_update_params"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="bottom"
-        />
-        <Button android:id="@+id/button_send"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/send"
+            android:text="@string/update_params"
         />
     </LinearLayout>
 </LinearLayout>
