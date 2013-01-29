@@ -1,5 +1,7 @@
 package com.example.supconfigtool;
 
+import java.text.DecimalFormat;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -119,17 +121,39 @@ public class MainActivity extends Activity {
         mConversationView = (ListView) findViewById(R.id.in);
         mConversationView.setAdapter(mConversationArrayAdapter);
 
+        DecimalFormat displayedValuesFormat = new DecimalFormat("0.##");
+        String[] displayedValuesP = new String[100];
+        for(int i=0; i < displayedValuesP.length; i++)
+        {
+        	displayedValuesP[i] = displayedValuesFormat.format(i*0.2);
+        }
         mNumberPickerP = (NumberPicker) findViewById(R.id.p_param_picker);
-        mNumberPickerP.setMaxValue(100);
+        mNumberPickerP.setMaxValue(displayedValuesP.length-1);
         mNumberPickerP.setMinValue(0);
+        mNumberPickerP.setWrapSelectorWheel(false);
+        mNumberPickerP.setDisplayedValues(displayedValuesP);
 
+        String[] displayedValuesI = new String[100];
+        for(int i=0; i < displayedValuesI.length; i++)
+        {
+        	displayedValuesI[i] = displayedValuesFormat.format((i - 50) * 0.05);
+        }
         mNumberPickerI = (NumberPicker) findViewById(R.id.i_param_picker);
-        mNumberPickerI.setMaxValue(100);
+        mNumberPickerI.setMaxValue(displayedValuesI.length-1);
         mNumberPickerI.setMinValue(0);
+        mNumberPickerI.setWrapSelectorWheel(false);
+        mNumberPickerI.setDisplayedValues(displayedValuesI);
 
+        String[] displayedValuesD = new String[100];
+        for(int i=0; i < displayedValuesD.length; i++)
+        {
+           displayedValuesD[i] = displayedValuesFormat.format((i - 100) * 2.0);
+        }        
         mNumberPickerD = (NumberPicker) findViewById(R.id.d_param_picker);
-        mNumberPickerD.setMaxValue(100);
+        mNumberPickerD.setMaxValue(displayedValuesD.length-1);
         mNumberPickerD.setMinValue(0);
+        mNumberPickerD.setWrapSelectorWheel(false);
+        mNumberPickerD.setDisplayedValues(displayedValuesD);        
         
         // Initialize the send button with a listener that for click events
         mUpdateButton = (Button) findViewById(R.id.button_update_params);
